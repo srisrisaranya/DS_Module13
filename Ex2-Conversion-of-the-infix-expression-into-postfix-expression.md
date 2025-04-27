@@ -22,92 +22,40 @@ RegisterNumber:  212223110044
 */
 ```
 ```
-#include<stdio.h> 
-#include<ctype.h> 
- 
-char stack[100]; 
-int top = -1; 
-void push(char x) 
-{ 
-stack[++top]=x; 
- 
-} 
- 
-char pop() 
-{ 
-if(top==-1) 
-return 0; 
-else 
-return stack[top--]; 
-} 
-int priority(char x) 
-{ 
-if(x=='(') 
-  
-  
-{ 
-return 0; 
-} 
-if(x=='&'||x=='|') 
-{ 
-return 1; 
-} 
-if(x=='+'||x=='-') 
-{ 
-return 2; 
-} 
-if(x=='*'||x=='/'||x=='%') 
-{ 
-return 3; 
-} 
-if(x=='^') 
-{ 
-return 4; 
-} 
-return 0; 
-} 
-char IntoPost(char *exp) 
-{ 
-char *e,x; 
-e=exp; 
-while(*e!='\0') 
-{ 
-if(isalnum(*e)) 
-{ 
-printf("%c ",*e); 
-} 
-else if(*e=='(') 
-{ 
-push(*e); 
-} 
-else if(*e==')') 
-{ 
-while((x=pop())!='(') 
-printf("%c ",x); 
-} 
-else 
-{ 
-while(priority(stack[top])>=priority(*e)) 
-printf("%c ",pop()); 
-push(*e); 
-} 
-e++; 
-} 
-while(top != -1) 
-{ 
-printf("%c ",pop()); 
-}return 0; 
-} 
-int main() 
-{ 
-char exp[100]="3%2+4*(A&B)"; 
-IntoPost(exp); 
-return 1; 
+char IntoPost(char *exp)
+{
+   char *e,x;
+   e=exp;
+   while(*e!='\0')
+   {
+       if(isalnum(*e))
+       printf("%c",*e);
+       else if(*e=='(')
+       push(*e);
+       else if(*e==')')
+       {
+           while((x=pop())!='(')
+           printf("%c",x);
+       }
+       else
+       {
+           while(priority(stack[top])>=priority(*e))
+           printf("%c",pop());
+           push(*e);
+       }
+       e++;
+   }
+   while(top!=-1)
+   printf("%c",pop());
+   
+    
+    
+ return 1;   
 }
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/626858d2-2817-4aed-911c-f7bfee6a2f9b)
+![image](https://github.com/user-attachments/assets/7e376e72-d609-4c39-942c-94f998ab4816)
 
 ## Result:
 Thus, the C program to convert the infix expression into postfix form using stack by following the operator precedence and associative rule is implemented successfully.
