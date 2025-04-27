@@ -23,66 +23,53 @@ RegisterNumber:  212223110044
 */
 ```
 ```
-#include <stdio.h> 
-#include<string.h> 
-int priority(char x) 
-{ 
- 
-if(x == '&' || x == '|') 
-return 1; 
-if(x == '+' || x == '-') 
-return 2; 
-if(x == '*' || x == '/' || x == '%') 
-return 3; 
-if(x == '^') 
-return 4; 
-return 0; 
-} 
- 
-int main() 
-{ 
-int i,j; 
-char ch[100]="(A*B)^C+(D%H)/F&G"; 
-for(i=0;i<strlen(ch);i++) 
-{ 
-if(ch[i]=='+'|| 
-ch[i]=='-'|| 
-ch[i]=='*'|| 
-ch[i]=='/'|| 
-ch[i]=='%'|| 
-ch[i]=='^'|| 
-ch[i]=='&'|| 
-ch[i]=='|') 
-{ 
-j=priority(ch[i]); 
-switch(j) 
-{ 
-case 1: 
-printf("%c ---- > ",ch[i]); 
-printf("Lowest Priority\n"); 
-break; 
-case 2: 
-printf("%c ---- > ",ch[i]); 
-printf("Second Lowest Priority\n"); 
-break; 
-case 3: 
-printf("%c ---- > ",ch[i]); 
-printf("Second Highest Priority\n"); 
-break; 
-case 4: 
-printf("%c ---- > ",ch[i]); 
-printf("Highest Priority\n"); 
-break; 
-} 
-} 
-} 
- 
-return 0; 
+#include <stdio.h>
+#include <string.h>
+
+
+int get_priority(char x) {
+    if (x == '&' || x == '|')
+        return 1; 
+    if (x == '+' || x == '-')
+        return 2; 
+    if (x == '*' || x == '/' || x == '%')
+        return 3; 
+    if (x == '^')
+        return 4; 
+
+    return 0; 
 }
+
+int main() {
+    char ch[100] = "+ / * |";
+
+    for (int i = 0; i < strlen(ch); i++) {
+        if (ch[i] == '+' || ch[i] == '-' || ch[i] == '*' || ch[i] == '/' || ch[i] == '%' || ch[i] == '&' || ch[i] == '|' || ch[i] == '^') {
+            int j = get_priority(ch[i]);
+            switch (j) {
+                case 1:
+                    printf("%c  ----> Lowest Priority\n", ch[i]);
+                    break;
+                case 2:
+                    printf("%c  ----> Second Lowest Priority\n", ch[i]);
+                    break;
+                case 3:
+                    printf("%c  ----> Second Highest Priority\n", ch[i]);
+                    break;
+                case 4:
+                    printf("%c  ----> Highest Priority\n", ch[i]);
+                    break;
+            }
+        }
+    }
+
+    return 0;
+}
+
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/b00cc209-47ca-4116-b7a4-6823f18ac53c)
+![image](https://github.com/user-attachments/assets/5fb7b225-6394-4767-b0fa-3fd9dd5b6a68)
 
 ## Result:
 Thus the C program to find and display the priority of the operator in the given Postfix expression is implemented successfully
